@@ -2,7 +2,7 @@
 
 ## Identified Problem or Need
 
-Replace this text with a clearly stated problem or need that exists that your project will attempt to solve / fulfil.
+Replace this text with a clearly stated problem or need that exists that your project will attempt to solve / fulfil. 
 
 
 ## End-User Requirements
