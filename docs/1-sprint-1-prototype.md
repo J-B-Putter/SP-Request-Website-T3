@@ -38,7 +38,7 @@ The first stage of prototyping was to explore how the UI might 'flow' between st
 
 This Figma demo shows the initial design for the UI 'flow':
 
-**FIGMA FLOW - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT**
+**FIGMA FLOW**
 
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="412" height="960" src="https://embed.figma.com/proto/uTVGolNzX2oFxNmmAkLnCS/Untitled?node-id=4-54&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=4%3A54&embed-host=share" allowfullscreen></iframe>
 
