@@ -1,4 +1,4 @@
-# PROJECT NAME HERE
+# SimplePlanes Screenshots Requests
 
 by Janno Putter
 
@@ -23,6 +23,8 @@ The webb app will also notify me when deadlines are appraoching as well as when 
 ## Project Links
 
 - [GitHub repo for the project](https://github.com/J-B-Putter/SP-Request-Website-T3)
+- [Project Documentation](https://j-b-putter.github.io/SP-Request-Website-T3/)
+- [Live web app](https://...)
 
 
 ---
