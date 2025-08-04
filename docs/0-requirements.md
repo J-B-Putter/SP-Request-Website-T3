@@ -24,7 +24,7 @@ Everything works as it should and as expected. All the required functions are av
 
 ### Relevance to the System
 
-Like with any project my project also needs to function well and not have any sudden unexpected errors. All the functions I integrate must meet the user's requirements and therefore be in working condition. If my project fails to do the expected task, users no longer make use of it and it will become obsolete. 
+Like with any project my project also needs to function well and not have any sudden unexpected errors. All the functions I integrate must meet the user's requirements and therefore be in working condition. If my project fails to do the expected task, users will no longer make use of it and it will become obsolete. 
 
 ### Impact / Considerations
 
@@ -32,45 +32,45 @@ I will have to pay close attention to mistakes in my code. Before I release the 
 
 
 
-## NAME OF IMPLICATION 2
+## USABILITY
 
-Replace this text with a clear explanation of what the implication means.
-
-### Relevance to the System
-
-Replace this text with an explanation of why the implication is relevant to this particular project.
-
-### Impact / Considerations
-
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
-
-
-
-## NAME OF IMPLICATION 3
-
-Replace this text with a clear explanation of what the implication means.
+The end user does not get confused with what is happening on the web app and every function they want to use is easy to use and in logical places. The user can use the web app without external assistance. 
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the implication is relevant to this particular project.
+If the user visit my site with a goal in mind (to place a request), they should be able to achieve it with ease and without confusion or frustration. Every major function should be easy to find and in a logical location. 
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
+The layout of my web app should be relatively conventional and logical. Appropriate labels and symbols will be used to guide the user. The design and layout of the wabsite will place the focus on the most important functions. 
 
 
 
-## NAME OF IMPLICATION 4
+## AESTHETICS
 
-Replace this text with a clear explanation of what the implication means.
+Aesthetics refers to the visual design and layout of the website. It is pleasing for the user to look at and good colour and font comabinations are used that reflect the theme. 
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the implication is relevant to this particular project.
+My web app is mostly aimed at players of a specific game (SimplePlanes). Following the same design as the existing website as well as the aesthetics of the game will likely appeal to the user the best. 
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
+I need to use the same colour pallet as the game along with the style of the buttons to make the user feel "at home". 
+
+
+
+## ACCESSIBILITY
+
+Users of all abilities can access the web app on most common devices with relatively no difference in experience. 
+
+### Relevance to the System
+
+SimplePlanes is available on multaple platforms including Mobile devices and Desktop PCs. My website should be available on both of these platforms, giving an equal experience reqardless of the user's prefered device. The colour sceme and visual appearance of my website should not desturb users regardless of their abilities. 
+
+### Impact / Considerations
+
+I will need to design the layout for more than one device and pay close attension to colours, fonts, and sudden brightness changes to give all users the same experience. 
 
 
 
