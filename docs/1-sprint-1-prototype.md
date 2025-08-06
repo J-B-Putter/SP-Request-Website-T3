@@ -12,18 +12,19 @@ Develop a prototype that simulates the key functionality of the system, then tes
 
 ## Initial Database Design
 
-Replace this text with notes regarding the DB design.
+Simple but functional 2 table DB connecting the users' info with the Request: 
 
-![SCREENSHOT OF DB DESIGN](screenshots/example.png)
+![Alt text](<Screenshot 2025-08-06 121105-1.png>)
 
 
 ### Required Data Input
 
-Replace this text with a description of what data will be input, and where / how it will be obtained.
+Users will need to create an account with a username and password. When a user places a request, a URL to another website will be required as well as a description and deadline. 
+All data will be obtained through the user typing it in the appropriate fields. 
 
 ### Required Data Output
 
-Replace this text with a description of the outputs for the system - what types of data will be displayed?
+
 
 ### Required Data Processing
 

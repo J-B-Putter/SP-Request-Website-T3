@@ -70,28 +70,41 @@ SimplePlanes is available on multaple platforms including Mobile devices and Des
 
 ### Impact / Considerations
 
-I will need to design the layout for more than one device and pay close attension to colours, fonts, and sudden brightness changes to give all users the same experience. 
+I will need to design the layout for more than one device and pay close attension to colours, fonts, and sudden brightness changes to give all users of all abilities the same experience. 
 
 
 
-## NAME OF IMPLICATION 5
+## PRIVACY
 
-Replace this text with a clear explanation of what the implication means.
+Privacy refers to the amount of security there are to protect a users pesonal data from being stolen as well as what data is required from the user to allow the website to work. 
 
 ### Relevance to the System
 
-Replace this text with an explanation of why the implication is relevant to this particular project.
+Although my website will not require much personal data from the user in order to work, it will require their username from another website. To some users this might seem unsafe and therefore I will ensure them that none of their data will be stolen and I will not get access to their account on this specific website. 
 
 ### Impact / Considerations
 
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this implication.
+Each user's password will be encripted before being stored in the database. Before a user registers, they will need to agree to a the website's privacy policy and terms of service.  
 
 
 ---
 
 # User Experience (UX) Principles
 
-## NAME OF UX PRINCIPLE 1
+## USEFUL
+
+The final product fulfils an important need for the target audience and genuinely helps them with a specific inconvenience. 
+
+### Relevance to the System
+
+My website should be a solution to a problem and not only an aesthetic way to achieve the goal the end-user has. This is not hard to achieve since my problem is unique to me and my target audience. 
+
+### Impact / Considerations
+
+My website will be useful as long as it exists.  
+
+
+## DESIRABLE
 
 Replace this text with a clear explanation of what the principle means.
 
@@ -104,20 +117,7 @@ Replace this text with an explanation of why the principle is relevant to this p
 Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this principle.
 
 
-## NAME OF UX PRINCIPLE 2
-
-Replace this text with a clear explanation of what the principle means.
-
-### Relevance to the System
-
-Replace this text with an explanation of why the principle is relevant to this particular project.
-
-### Impact / Considerations
-
-Replace this text with an explanation of what you will need to consider moving forward and how the project will be impacted by this principle.
-
-
-## NAME OF UX PRINCIPLE 3
+## FINDABLE
 
 Replace this text with a clear explanation of what the principle means.
 
