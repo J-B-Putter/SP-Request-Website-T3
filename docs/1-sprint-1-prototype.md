@@ -41,18 +41,17 @@ This Figma demo shows the initial design for the UI 'flow':
 
 **FIGMA FLOW**
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="412" height="960" src="https://embed.figma.com/proto/uTVGolNzX2oFxNmmAkLnCS/Untitled?node-id=4-54&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=4%3A54&embed-host=share" allowfullscreen></iframe>
-
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="500" height="1000" src="https://embed.figma.com/proto/uaDFZxp9oyLplYvxg9imFv/SP-Request-T3--First-Flow-?scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&node-id=4-54&starting-point-node-id=4%3A54&embed-host=share" allowfullscreen></iframe>
 
 ### Testing
 
-Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
+After creating a basic flow, I asked members of my target audience to test the flow and give feedback. Most were satisfied but suggested that I add pages for previous projects and mod selection when filling out the "request form". 
 
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+I added the missing pages along with appropriate ways to navigate them (buttons, labels etc.). I also added a "Terms and Conditions" page. 
 
-*IMPROVED FIGMA FLOW - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/uTVGolNzX2oFxNmmAkLnCS/SP-Request-T3--Flow-Improvement-?scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&node-id=4-54&starting-point-node-id=4%3A54&embed-host=share" allowfullscreen></iframe>
 
 
 ---
@@ -63,8 +62,7 @@ The next stage of prototyping was to develop the layout for each screen of the U
 
 This Figma demo shows the initial layout design for the UI:
 
-*FIGMA PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
-
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/uTVGolNzX2oFxNmmAkLnCS/SP-Request-T3--Flow-Improvement-?scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&node-id=4-54&starting-point-node-id=4%3A54&embed-host=share" allowfullscreen></iframe>
 ### Testing
 
 Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
