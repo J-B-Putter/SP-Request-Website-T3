@@ -37,6 +37,14 @@ def index():
 
 
 #-----------------------------------------------------------
+# Welcome page route
+#-----------------------------------------------------------
+@app.get("/welcome/")
+def welcome():
+    return render_template("pages/welcome.jinja")
+
+
+#-----------------------------------------------------------
 # About page route
 #-----------------------------------------------------------
 @app.get("/about/")
@@ -178,7 +186,7 @@ def login_form():
 @app.post("/add-user")
 def add_user():
     # Get the data from the form
-    name = request.form.get("name")
+    # name = request.form.get("name")
     username = request.form.get("username")
     password = request.form.get("password")
 
