@@ -187,26 +187,26 @@ def login_form():
 def add_user():
     # Get the data from the form
     # name = request.form.get("name")
-    username = request.form.get("username")
+    username = request.form.get("SP_username")
     password = request.form.get("password")
 
     with connect_db() as client:
         # Attempt to find an existing record for that user
-        sql = "SELECT * FROM users WHERE username = ?"
+        sql = "SELECT * FROM users WHERE SP_username = ?"
         params = [username]
         result = client.execute(sql, params)
 
         # No existing record found, so safe to add the user
         if not result.rows:
             # Sanitise the name
-            name = html.escape(name)
+            username = html.escape(username)
 
             # Salt and hash the password
             hash = generate_password_hash(password)
 
             # Add the user to the users table
-            sql = "INSERT INTO users (name, username, password_hash) VALUES (?, ?, ?)"
-            params = [name, username, hash]
+            sql = "INSERT INTO users (SP_username, password_hash) VALUES (?, ?)"
+            params = [username, hash]
             client.execute(sql, params)
 
             # And let them know it was successful and they can login
@@ -224,12 +224,12 @@ def add_user():
 @app.post("/login-user")
 def login_user():
     # Get the login form data
-    username = request.form.get("username")
+    username = request.form.get("SP_username")
     password = request.form.get("password")
 
     with connect_db() as client:
         # Attempt to find a record for that user
-        sql = "SELECT * FROM users WHERE username = ?"
+        sql = "SELECT * FROM users WHERE SP_username = ?"
         params = [username]
         result = client.execute(sql, params)
 
@@ -243,7 +243,7 @@ def login_user():
             if check_password_hash(hash, password):
                 # Yes, so save info in the session
                 session["user_id"]   = user["id"]
-                session["user_name"] = user["name"]
+                session["user_name"] = user["SP_username"]
                 session["logged_in"] = True
 
                 # And head back to the home page
