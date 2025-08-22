@@ -43,6 +43,14 @@ def index():
 def welcome():
     return render_template("pages/welcome.jinja")
 
+#-----------------------------------------------------------
+# Request page route
+#-----------------------------------------------------------
+@app.get("/request/")
+def request():
+    return render_template("pages/request.jinja")
+
+
 
 #-----------------------------------------------------------
 # About page route

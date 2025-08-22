@@ -1,0 +1,68 @@
+{#=====================================================
+  User Registration page
+  - Form for adding a new user
+=====================================================#}
+
+{% extends 'pages/base.jinja' %}
+
+
+{% block title %}
+
+    Flask Demo - New User
+
+{% endblock %}
+
+
+{% block content %}
+
+    <article>
+
+        <header>
+            <h2>Place a New Request</h2>
+        </header>
+
+        <form action="/place-request" method="POST">
+
+            <textarea 
+                name="description" 
+                placeholder="Description" 
+                required
+            >
+            </textarea>             
+            
+            <input
+                type="text"
+                name="Build_URL"
+                placeholder="Build URL"
+                required
+            >
+            
+            <select name="cars" id="cars">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
+
+            <h5>Deadline</h5>
+            <input
+                type="date"
+                name="deadline"
+                placeholder="Deadline"
+                required
+            >
+
+            <button>Place Request</button>
+            <a href="/" role="button">Cancel</a>
+            
+        </form>
+            
+
+        {# <footer>
+            Or, if you already have an account, <a href="/login">login</a>
+        </footer> #}
+
+    </article>
+
+{% endblock %}
+
