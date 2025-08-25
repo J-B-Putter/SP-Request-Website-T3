@@ -47,7 +47,7 @@ def welcome():
 # Request page route
 #-----------------------------------------------------------
 @app.get("/request/")
-def request():
+def show_request_form():
     return render_template("pages/request.jinja")
 
 
@@ -117,6 +117,36 @@ def show_one_thing(id):
             # No, so show error
             return not_found_error()
 
+
+#-----------------------------------------------------------
+# Route for adding a thing, using data posted from a form
+# - Restricted to logged in users
+#-----------------------------------------------------------
+@app.post("/place-request")
+@login_required
+def place_a_request():
+    # Get the data from the form
+    description  = request.form.get("description")
+    build_url = request.form.get("build_url")
+    mods = request.form.get("mods")
+    deadline = request.form.get("deadline")
+
+    # Sanitise the text inputs
+    description = html.escape(description)
+    build_url = html.escape(build_url)
+
+    # Get the user id from the session
+    user_id = session["user_id"]
+
+    with connect_db() as client:
+        # Add the thing to the DB
+        sql = "INSERT INTO requests (user_id, description, build_url, mods, deadline) VALUES (?, ?, ?, ?, ?)"
+        params = [description, build_url, deadline, user_id, mods]
+        client.execute(sql, params)
+
+        # Go back to the home page
+        flash(f"Thing '{build_url}' added", "success")
+        return redirect("/")
 
 #-----------------------------------------------------------
 # Route for adding a thing, using data posted from a form
@@ -194,7 +224,6 @@ def login_form():
 @app.post("/add-user")
 def add_user():
     # Get the data from the form
-    # name = request.form.get("name")
     username = request.form.get("SP_username")
     password = request.form.get("password")
 
