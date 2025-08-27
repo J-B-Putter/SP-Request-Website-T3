@@ -49,7 +49,7 @@ def welcome():
 @app.get("/request/")
 def show_request_form():
     return render_template("pages/request.jinja")
-
+ 
 
 
 #-----------------------------------------------------------
@@ -58,6 +58,25 @@ def show_request_form():
 @app.get("/about/")
 def about():
     return render_template("pages/about.jinja")
+
+
+
+#-----------------------------------------------------------
+# User registration form route
+#-----------------------------------------------------------
+@app.get("/register/")
+def register_form():
+    return render_template("pages/register.jinja")
+
+
+
+#-----------------------------------------------------------
+# User login form route
+#-----------------------------------------------------------
+@app.get("/login/")
+def login_form():
+    return render_template("pages/login.jinja")
+
 
 
 #-----------------------------------------------------------
@@ -139,13 +158,13 @@ def place_a_request():
     user_id = session["user_id"]
 
     with connect_db() as client:
-        # Add the thing to the DB
+        # Add the request to the DB
         sql = "INSERT INTO requests (user_id, description, build_url, mods, deadline) VALUES (?, ?, ?, ?, ?)"
-        params = [description, build_url, deadline, user_id, mods]
+        params = [user_id, description, build_url, mods, deadline]
         client.execute(sql, params)
 
         # Go back to the home page
-        flash(f"Thing '{build_url}' added", "success")
+        flash(f"Request Placed", "success")
         return redirect("/")
 
 #-----------------------------------------------------------
@@ -196,26 +215,6 @@ def delete_a_thing(id):
         flash("Thing deleted", "success")
         return redirect("/things")
 
-
-
-
-
-
-
-#-----------------------------------------------------------
-# User registration form route
-#-----------------------------------------------------------
-@app.get("/register")
-def register_form():
-    return render_template("pages/register.jinja")
-
-
-#-----------------------------------------------------------
-# User login form route
-#-----------------------------------------------------------
-@app.get("/login")
-def login_form():
-    return render_template("pages/login.jinja")
 
 
 #-----------------------------------------------------------
