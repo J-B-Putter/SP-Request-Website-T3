@@ -49,8 +49,7 @@ def welcome():
 @app.get("/request/")
 def show_request_form():
     return render_template("pages/request.jinja")
- 
-
+  
 
 #-----------------------------------------------------------
 # About page route
@@ -58,7 +57,6 @@ def show_request_form():
 @app.get("/about/")
 def about():
     return render_template("pages/about.jinja")
-
 
 
 #-----------------------------------------------------------
@@ -69,7 +67,6 @@ def register_form():
     return render_template("pages/register.jinja")
 
 
-
 #-----------------------------------------------------------
 # User login form route
 #-----------------------------------------------------------
@@ -77,6 +74,29 @@ def register_form():
 def login_form():
     return render_template("pages/login.jinja")
 
+
+#-----------------------------------------------------------
+# Things page route - Show all the things, and new thing form
+#-----------------------------------------------------------
+@app.get("/responses/")
+def show_all_responses():
+    with connect_db() as client:
+        # Get all the things from the DB
+        sql = """
+            SELECT  response_url,
+                    notes
+
+            FROM requests
+            WHERE session.u_id = user_id
+            
+        """
+        params=[]
+        result = client.execute(sql, params)
+        responses = result.rows
+        print(responses)
+
+        # And show them on the page
+        return render_template("pages/responses.jinja")
 
 
 #-----------------------------------------------------------

@@ -1,0 +1,34 @@
+{#=====================================================
+  Response page
+  - 
+=====================================================#}
+
+{% extends 'pages/base.jinja' %}
+
+
+{% block title %}
+
+        Responses
+        
+{% endblock %}
+
+
+{% block content %}
+
+    <h1>Responses</h1>
+
+    <article>
+      {{ response_url }}
+    </article>
+
+    <article>
+      {{ notes }}
+    </article>
+
+    {# <a href="/request" role="button">Place a Request</a>
+    <a href="/results" role="button">Results</a>
+    <a href="/mods" role="button">Compatible Mods</a> #}
+
+
+{% endblock %}
+
