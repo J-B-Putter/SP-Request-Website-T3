@@ -54,9 +54,9 @@ def show_request_form():
 #-----------------------------------------------------------
 # About page route
 #-----------------------------------------------------------
-@app.get("/about/")
-def about():
-    return render_template("pages/about.jinja")
+@app.get("/user/")
+def user():
+    return render_template("pages/user.jinja")
 
 
 #-----------------------------------------------------------
@@ -75,28 +75,40 @@ def login_form():
     return render_template("pages/login.jinja")
 
 
+# #-----------------------------------------------------------
+# # User login form route
+# #-----------------------------------------------------------
+# @app.get("/delete-user/")
+# def delete_user():
+#     return render_template("pages/user.jinja")
+
+
 #-----------------------------------------------------------
 # Things page route - Show all the things, and new thing form
 #-----------------------------------------------------------
 @app.get("/responses/")
 def show_all_responses():
+    user_id = session.get("user_id")
     with connect_db() as client:
-        # Get all the things from the DB
+        # Get all the responses from the DB
         sql = """
-            SELECT  response_url,
-                    notes
+            SELECT  
+                description,
+                response_url,
+                notes,
+                user_id
 
             FROM requests
-            WHERE session.u_id = user_id
-            
+            WHERE user_id = ?
+                   
+            ORDER BY sub_date DESC            
         """
-        params=[]
+        params=[user_id]
         result = client.execute(sql, params)
         responses = result.rows
-        print(responses)
 
         # And show them on the page
-        return render_template("pages/responses.jinja")
+        return render_template("pages/responses.jinja", responses=responses)
 
 
 #-----------------------------------------------------------
@@ -158,7 +170,7 @@ def show_one_thing(id):
 
 
 #-----------------------------------------------------------
-# Route for adding a thing, using data posted from a form
+# Route for placing a request, using data posted from a form
 # - Restricted to logged in users
 #-----------------------------------------------------------
 @app.post("/place-request")
@@ -324,4 +336,23 @@ def logout():
     # And head back to the home page
     flash("Logged out successfully", "success")
     return redirect("/")
+
+# #-----------------------------------------------------------
+# # Route for deleting a thing, Id given in the route
+# # - Restricted to logged in users
+# #-----------------------------------------------------------
+# @app.get("/delete-user/<int:id>")
+# @login_required
+# def delete_a_thing(id):
+#     # Get the user id from the session
+#     user_id = session.get("user_id")
+#     with connect_db() as client:
+#         # Delete the user from the DB
+#         sql = "DELETE FROM users WHERE user_id=?"
+#         params = [id, user_id]
+#         client.execute(sql, params)
+
+#         # Go back to the home page
+#         flash("Account deleted", "success")
+#         return redirect("/welcome")
 

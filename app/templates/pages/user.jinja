@@ -1,0 +1,33 @@
+{#=====================================================
+  Home page
+  - Hero style greeting banner
+  - List of things passed in as 'things' array
+  - Form for adding a new thing
+=====================================================#}
+
+{% extends 'pages/base.jinja' %}
+
+
+{% block title %}
+
+        Screenshot Requests
+        
+{% endblock %}
+
+
+{% block content %}
+ 
+    {# <a href="/request" role="button">Place a Request</a>
+    <a href="/responses" role="button">Responses</a>
+    <a href="/mods" role="button">Compatible Mods</a> #}
+
+    <h1>Your Info</h1>
+
+    <article>
+      
+    </article>
+
+    <a href="/delete-user/{{ session.user_id }}">Delete my account</a>
+
+{% endblock %}
+

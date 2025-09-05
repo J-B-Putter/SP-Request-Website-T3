@@ -17,18 +17,25 @@
 
     <h1>Responses</h1>
 
-    <article>
-      {{ response_url }}
-    </article>
+    {% for response in responses %}
+      <article>
+        <h3>{{ response.description }}</h3>     
+        {% if response.response_url %} 
+          <p><a href="{{ response.response_url }}">Click here to view</a></p>
+          <p>{{ response.notes }}</p>
+        {% else %}
+          <p>Pending...</p>  
+        {% endif %}      
+      </article>
 
-    <article>
-      {{ notes }}
-    </article>
-
+    {% else %}
+       <p>No Responses Yet</p>
+       <p>Ask for updates <a href="https://simpleplanes.com/a/QuSVBJ/JBP-Aviations-Chatroom">here</a></p>
+    {% endfor %}
+   
     {# <a href="/request" role="button">Place a Request</a>
     <a href="/results" role="button">Results</a>
     <a href="/mods" role="button">Compatible Mods</a> #}
-
 
 {% endblock %}
 
