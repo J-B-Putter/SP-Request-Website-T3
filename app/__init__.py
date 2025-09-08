@@ -33,7 +33,27 @@ init_datetime(app)  # Handle UTC dates in timestamps
 #-----------------------------------------------------------
 @app.get("/")
 def index():
-    return render_template("pages/home.jinja")
+    user_id = session.get("user_id")
+    with connect_db() as client:
+        # Get all the responses from the DB
+        sql = """
+            SELECT  
+                description,
+                build_url,
+                deadline,
+                user_id
+
+            FROM requests
+            WHERE user_id = ?
+                    
+            ORDER BY sub_date DESC            
+        """
+        params=[user_id]
+        result = client.execute(sql, params)
+        prev_requests = result.rows
+
+        # And show them on the page
+        return render_template("pages/home.jinja", prev_requests=prev_requests)
 
 
 #-----------------------------------------------------------
@@ -74,13 +94,6 @@ def register_form():
 def login_form():
     return render_template("pages/login.jinja")
 
-
-# #-----------------------------------------------------------
-# # User login form route
-# #-----------------------------------------------------------
-# @app.get("/delete-user/")
-# def delete_user():
-#     return render_template("pages/user.jinja")
 
 
 #-----------------------------------------------------------
@@ -335,24 +348,26 @@ def logout():
 
     # And head back to the home page
     flash("Logged out successfully", "success")
-    return redirect("/")
+    return redirect("/welcome")
 
-# #-----------------------------------------------------------
-# # Route for deleting a thing, Id given in the route
-# # - Restricted to logged in users
-# #-----------------------------------------------------------
-# @app.get("/delete-user/<int:id>")
-# @login_required
-# def delete_a_thing(id):
-#     # Get the user id from the session
-#     user_id = session.get("user_id")
-#     with connect_db() as client:
-#         # Delete the user from the DB
-#         sql = "DELETE FROM users WHERE user_id=?"
-#         params = [id, user_id]
-#         client.execute(sql, params)
+#-----------------------------------------------------------
+# Route for deleting a user, Id given in the route
+# - Restricted to logged in users
+#-----------------------------------------------------------
+@app.get("/delete-user/<int:id>")
+@login_required
+def delete_my_account(id):
+    with connect_db() as client:
+        # Delete the user from the DB
+        sql = "DELETE FROM users WHERE id=?"
+        params = [id]
+        client.execute(sql, params)
+        # Clear the details from the session
+        session.pop("user_id", None)
+        session.pop("user_name", None)
+        session.pop("logged_in", None)
 
-#         # Go back to the home page
-#         flash("Account deleted", "success")
-#         return redirect("/welcome")
+        # Go back to the home page
+        flash("Account deleted", "success")
+        return redirect("/welcome")
 

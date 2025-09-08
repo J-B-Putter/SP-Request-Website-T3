@@ -8,12 +8,13 @@
 
 {% block title %}
 
-    Flask Demo - New User
+    Flask Demo - New Request
 
 {% endblock %}
 
 
 {% block content %}
+{% if session.user_id %}
 
     <article>
 
@@ -58,5 +59,13 @@
             
 
     </article>
+{% else %}
+
+    <h1>Oops!</h1>
+    <p>
+        <a href="/login">Login</a> to access these functions...
+    </p>
+
+{% endif %}
 
 {% endblock %}

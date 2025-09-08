@@ -27,7 +27,8 @@
       
     </article>
 
-    <a href="/delete-user/{{ session.user_id }}">Delete my account</a>
+    {# <a href="/delete-user/{{ session.user_id }}">Delete</a> #}
+    <a href="/delete-user/{{ session.user_id }}" onclick="return confirm('Really delete?');">Delete my account</a>
 
 {% endblock %}
 

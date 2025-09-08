@@ -10,32 +10,33 @@
 
 {% block title %}
 
-        Screenshot Requests
+        Main Control Panel
         
 {% endblock %}
 
 
 {% block content %}
+    
+    <article>
+      <a href="/request" role="button">Place a Request</a>
+      <a href="/responses" role="button">Responses</a>
+      <a href="/mods" role="button">Compatible Mods</a>
+    </article>
 
     <h1>Recent Requests</h1>
 
-    <article>
-      Previous Request
-    </article>
+     {% for prev_request in prev_requests %}
+      <article>
+        <h3>{{ prev_request.description }}</h3>     
+          <p><a href="{{ prev_request.build_url }}">Click here to view build</a></p>
+       </article>
 
-    <article>
-      Previous Request
-    </article>
-
-    <article>
-      Previous Request
-    </article>
+    {% else %}
+       <p>No Requests Yet</p>
+    {% endfor %}
 
     {# <meta http-equiv="refresh" content="1" /> #}
 
-    <a href="/request" role="button">Place a Request</a>
-    <a href="/responses" role="button">Responses</a>
-    <a href="/mods" role="button">Compatible Mods</a>
 
 
 {% endblock %}
