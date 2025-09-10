@@ -15,6 +15,8 @@
 
 {% block content %}
 
+{% if session.user_id %}
+
     <h1>Responses</h1>
 
     {% for response in responses %}
@@ -32,10 +34,13 @@
        <p>No Responses Yet</p>
        <p>Ask for updates <a href="https://simpleplanes.com/a/QuSVBJ/JBP-Aviations-Chatroom">here</a></p>
     {% endfor %}
-   
-    {# <a href="/request" role="button">Place a Request</a>
-    <a href="/results" role="button">Results</a>
-    <a href="/mods" role="button">Compatible Mods</a> #}
+
+{% else %}
+    <h1>Oops!</h1>
+    <p>
+        <a href="/login">Login</a> to access these functions...
+    </p>
+{% endif %}
 
 {% endblock %}
 
