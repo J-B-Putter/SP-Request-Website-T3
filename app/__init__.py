@@ -34,27 +34,30 @@ init_datetime(app)  # Handle UTC dates in timestamps
 @app.get("/")
 def index():
     user_id = session.get("user_id")
-    with connect_db() as client:
-        # Get all the responses from the DB
-        sql = """
-            SELECT  
-                description,
-                build_url,
-                deadline,
-                user_id
+    if user_id:
+        with connect_db() as client:
+            # Get all the responses from the DB
+            sql = """
+                SELECT  
+                    description,
+                    build_url,
+                    deadline,
+                    user_id
 
-            FROM requests
-            WHERE user_id = ?
-                    
-            ORDER BY sub_date DESC            
-        """
-        params=[user_id]
-        result = client.execute(sql, params)
-        prev_requests = result.rows
+                FROM requests
+                WHERE user_id = ?
+                        
+                ORDER BY sub_date DESC            
+            """
+            params=[user_id]
+            result = client.execute(sql, params)
+            prev_requests = result.rows
 
         # And show them on the page
         return render_template("pages/home.jinja", prev_requests=prev_requests)
-
+    else:
+        return render_template("pages/welcome.jinja")
+ 
 
 #-----------------------------------------------------------
 # Welcome page route
@@ -95,9 +98,36 @@ def login_form():
     return render_template("pages/login.jinja")
 
 
+#-----------------------------------------------------------
+# Previous Projects page route 
+# - Show all the responses for the logged in user
+#-----------------------------------------------------------
+@app.get("/previous_projects/")
+def show_all_previous_projects():
+    with connect_db() as client:
+        # Get all the Completed Projects from the DB
+        sql = """
+            SELECT  
+                build_url,
+                response_url,
+                preview_img
+
+            FROM requests
+            WHERE response_url NOT NULL
+
+            ORDER BY sub_date DESC            
+        """
+        params=[]
+        result = client.execute(sql, params)
+        previous_projects = result.rows
+
+        # And show them on the page
+        return render_template("pages/previous_projects.jinja", previous_projects=previous_projects)
+
 
 #-----------------------------------------------------------
-# Things page route - Show all the things, and new thing form
+# Responses page route 
+# - Show all the responses for the logged in user
 #-----------------------------------------------------------
 @app.get("/responses/")
 def show_all_responses():

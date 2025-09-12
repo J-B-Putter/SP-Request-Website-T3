@@ -16,6 +16,8 @@
 
 
 {% block content %}
+
+{% if session.user_id %}
     
     <article>
       <a href="/request" role="button">Place a Request</a>
@@ -36,7 +38,9 @@
     {% endfor %}
 
     {# <meta http-equiv="refresh" content="1" /> #}
-
+{% else %}
+    
+{% endif %}
 
 
 {% endblock %}

@@ -1,0 +1,32 @@
+{#=====================================================
+  Response page
+  - 
+=====================================================#}
+
+{% extends 'pages/base.jinja' %}
+
+
+{% block title %}
+
+        Responses
+        
+{% endblock %}
+
+
+{% block content %}
+
+    <h1>Responses</h1>
+
+    {% for project in previous_projects %}
+      <article>
+        <h3><a href="{{ project.build_url }}">Build</a></h3>   
+        <img src="{{ project.preview_img }}">  
+        <p><a href="{{ project.response_url }}">Images</a></p>
+      </article>
+
+    {% else %}
+       <h3>No Completed Projects Yet</h3>
+    {% endfor %}
+
+{% endblock %}
+
