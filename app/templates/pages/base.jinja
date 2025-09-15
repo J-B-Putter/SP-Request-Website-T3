@@ -39,9 +39,15 @@
             </ul>
 
             <ul>
+
                 {% if session.user_id %}
 
                     <li>Hello, <a href="/user">{{ session.user_name }}</a></li>
+                    {% if session.user_id == 1 %}
+
+                    <li><a href="/admin-dashboard">Dashboard</a></li>
+
+                    {% endif %}                    
                     <li><a href="/">Home</a></li>
                     <li><a href="/logout">Logout</a></li>
 

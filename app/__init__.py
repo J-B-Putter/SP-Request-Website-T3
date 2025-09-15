@@ -67,6 +67,14 @@ def welcome():
     return render_template("pages/welcome.jinja")
 
 #-----------------------------------------------------------
+# Admin Dashboard page route
+#-----------------------------------------------------------
+@app.get("/admin-dashboard/")
+def show_admin_dashboard():
+    return render_template("pages/admin-dashboard.jinja")
+  
+
+#-----------------------------------------------------------
 # Request page route
 #-----------------------------------------------------------
 @app.get("/request/")
@@ -357,9 +365,15 @@ def login_user():
                 session["user_name"] = user["SP_username"]
                 session["logged_in"] = True
 
-                # And head back to the home page
-                flash("Login successful", "success")
-                return redirect("/")
+                # Test user authority
+                if session["user_id"] == 1:
+                    # Give admin dashboard for admin user
+                    flash("Login successful", "success")
+                    return redirect("/admin-dashboard")
+                else:
+                    # Head back to the home page
+                    flash("Login successful", "success")
+                    return redirect("/")
 
         # Either username not found, or password was wrong
         flash("Invalid credentials", "error")
