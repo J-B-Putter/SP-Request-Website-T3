@@ -14,51 +14,29 @@
 
 
 {% block content %}
-{% if session.user_id %}
+{% if session.user_id == 1 %}
+    <header>
+        <h2>Submit Response</h2>
+    </header>
+    {% for request in incomplete_requests %}
+        <article>
+            <h3><a href="{{ request.build_url }}">Build</a> </h3>
+            <p>
+                {{ request.description }}
+            </p>
+            <p>
+                {{ request.mods }}
+            </p>
+            <p>
+                {{ request.deadline }}
+            </p>
+            <a href="/respond/{{ request.id }}" role="button">Respond</a>
+        </article>
+    {% else %}
+        No Requests Yet...
+    {% endfor %}
 
-    <article>
 
-        <header>
-            <h2>Submit Response</h2>
-        </header>
-
-        <form action="/place-request" method="POST">
-
-            <textarea 
-                name="description" 
-                placeholder="Description" 
-                required
-            ></textarea>             
-            
-            <input
-                type="text"
-                name="build_url"
-                placeholder="Build URL"
-                required
-            >
-            
-            <select name="mods" id="mods">
-                <option value="mod1">Mod 1</option>
-                <option value="mod2">Mod 2</option>
-                <option value="mod3">Mod 3</option>
-                <option value="mod4">Mod 4</option>
-            </select>
-
-            <h5>Deadline</h5>
-            <input
-                type="date"
-                name="deadline"
-                placeholder="Deadline"
-                required
-            >
-
-            <button>Place Request</button>
-            <a href="/" role="button">Cancel</a>
-            
-        </form>
-            
-
-    </article>
 {% else %}
 
     <h1>Oops!</h1>

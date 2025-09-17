@@ -71,7 +71,27 @@ def welcome():
 #-----------------------------------------------------------
 @app.get("/admin-dashboard/")
 def show_admin_dashboard():
-    return render_template("pages/admin-dashboard.jinja")
+    with connect_db() as client:
+        # Get all the requests without response from the DB
+        sql = """
+            SELECT  
+                id,
+                build_url,
+                description,
+                mods,
+                deadline
+
+            FROM requests
+            WHERE response_url IS NULL
+
+            ORDER BY deadline ASC            
+        """
+        params=[]
+        result = client.execute(sql, params)
+        incomplete_requests = result.rows
+
+        # And show them on the page
+        return render_template("pages/admin-dashboard.jinja", incomplete_requests=incomplete_requests)
   
 
 #-----------------------------------------------------------
