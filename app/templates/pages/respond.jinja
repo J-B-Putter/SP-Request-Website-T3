@@ -1,0 +1,54 @@
+{#=====================================================
+  Thing page
+  - Shows details of a single thing
+  - Has a delete link to remove it
+=====================================================#}
+
+{% extends 'pages/base.jinja' %}
+
+
+{% block title %}
+
+    Flask Demo - Respond
+
+{% endblock %}
+
+
+{% block content %}
+
+    <article>
+
+        <header>
+            <h2>Respond to {{ request.builder }}</h2>
+        </header>
+
+        <form action="/submit-response/{{ request.id }}" method="POST">
+
+            <textarea 
+                name="notes" 
+                placeholder="Notes" 
+                required
+            ></textarea>             
+            
+            <input
+                type="text"
+                name="response_url"
+                placeholder="Postimages Gallery"
+                required
+            >
+            
+            <input
+                type="text"
+                name="preview_img"
+                placeholder="Preview Image"
+                required
+            >  
+
+            <button>Submit</button>
+            <a href="/admin-dashboard" role="button">Cancel</a>
+            
+        </form>
+        </article>
+
+{% endblock %}
+

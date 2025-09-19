@@ -75,13 +75,15 @@ def show_admin_dashboard():
         # Get all the requests without response from the DB
         sql = """
             SELECT  
-                id,
+                requests.id,
                 build_url,
                 description,
                 mods,
-                deadline
+                deadline,
+                users.SP_username AS builder
 
             FROM requests
+            JOIN users ON requests.user_id = users.id
             WHERE response_url IS NULL
 
             ORDER BY deadline ASC            
@@ -180,6 +182,66 @@ def show_all_responses():
 
         # And show them on the page
         return render_template("pages/responses.jinja", responses=responses)
+
+
+#-----------------------------------------------------------
+# Respond page route - Show a single request to respond to
+#-----------------------------------------------------------
+@app.get("/respond/<int:id>")
+def respond_to_request(id):
+    with connect_db() as client:
+        # Get the thing details from the DB, including the owner info
+        sql = """
+            SELECT 
+                user_id,
+                description,
+                build_url,
+                deadline,
+                users.SP_username AS builder
+
+            FROM requests
+            JOIN users ON requests.user_id = users.id
+
+            WHERE requests.id=?
+        """
+        params = [id]
+        result = client.execute(sql, params)
+
+        # Did we get a result?
+        if result.rows:
+            # yes, so show it on the page
+            request = result.rows[0]
+            return render_template("pages/respond.jinja", request=request)
+
+        else:
+            # No, so show error
+            return not_found_error()
+
+
+#-----------------------------------------------------------
+# Route for submitting the response
+#-----------------------------------------------------------
+@app.post("/submit-response/<int:id>")
+def submit_response(id):
+    # Get the data from the form
+    notes = request.form.get("notes")
+    response_url = request.form.get("response_url")
+    preview_img = request.form.get("preview_img")
+
+    # Sanitise the text inputs
+    notes = html.escape(notes)
+    response_url = html.escape(response_url)
+    preview_img = html.escape(preview_img)
+
+    with connect_db() as client:
+        # Add the request to the DB
+        sql = "INSERT INTO requests (notes, response_url, preview_img) VALUES (?, ?, ?) WHERE id= ?"
+        params = [id]
+        client.execute(sql, params)
+
+        # Go back to the home page
+        flash(f"Submitted", "success")
+        return redirect("/admin-dashboard")
 
 
 #-----------------------------------------------------------

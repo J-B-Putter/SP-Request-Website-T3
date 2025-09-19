@@ -20,15 +20,15 @@
     </header>
     {% for request in incomplete_requests %}
         <article>
-            <h3><a href="{{ request.build_url }}">Build</a> </h3>
+            <h3><a href="{{ request.build_url }}">{{ request.builder }}'s Build</a> </h3>
             <p>
                 {{ request.description }}
             </p>
-            <p>
+            {# <p>
                 {{ request.mods }}
-            </p>
+            </p> #}
             <p>
-                {{ request.deadline }}
+                <strong>{{ request.deadline }}</strong>
             </p>
             <a href="/respond/{{ request.id }}" role="button">Respond</a>
         </article>
