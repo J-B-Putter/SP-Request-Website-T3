@@ -101,7 +101,18 @@ def show_admin_dashboard():
 #-----------------------------------------------------------
 @app.get("/request/")
 def show_request_form():
-    return render_template("pages/request.jinja")
+    user_id = session.get("user_id")
+    with connect_db() as client:
+        # Get all the Completed Projects from the DB
+        sql = """
+            SELECT deadline, deadline_time
+            FROM requests
+        """
+        params=[]
+        result = client.execute(sql, params)
+        deadlines = result.rows
+
+    return render_template("pages/request.jinja", deadlines = deadlines)
   
 
 #-----------------------------------------------------------
@@ -314,6 +325,7 @@ def place_a_request():
     build_url = request.form.get("build_url")
     mods = request.form.get("mods")
     deadline = request.form.get("deadline")
+    deadline_time = request.form.get("deadline_time")
 
     # Sanitise the text inputs
     description = html.escape(description)
@@ -324,10 +336,10 @@ def place_a_request():
 
     with connect_db() as client:
         # Add the request to the DB
-        sql = "INSERT INTO requests (user_id, description, build_url, mods, deadline) VALUES (?, ?, ?, ?, ?)"
-        params = [user_id, description, build_url, mods, deadline]
+        sql = "INSERT INTO requests (user_id, description, build_url, mods, deadline, deadline_time) VALUES (?, ?, ?, ?, ?, ?)"
+        params = [user_id, description, build_url, mods, deadline, deadline_time]
         client.execute(sql, params)
-
+        
         # Go back to the home page
         flash(f"Request Placed", "success")
         return redirect("/")

@@ -45,13 +45,20 @@
             </select>
 
             <h5>Deadline</h5>
+            <h6>Date</h6>
             <input
                 type="date"
                 name="deadline"
                 placeholder="Deadline"
                 required
             >
-
+            <h6>Time</h6>
+            <input
+                type="time"
+                name="deadline_time"
+                placeholder="Time"
+                required
+            >
             <button>Place Request</button>
             <a href="/" role="button">Cancel</a>
             
@@ -67,6 +74,14 @@
     </p>
 
 {% endif %}
+    {% for date in deadlines %}
+        <article>
+            {{ date.deadline_time }}  
+        </article>
+    {% else %}
+
+    {% endfor %}
+
     <!DOCTYPE HTML>
     <html>
     <head>
@@ -85,7 +100,9 @@
 
     <script>
     // Set the date we're counting down to
+    {# var countDownDate = new Date("{{ deadlines[8] }} {{deadlines.deadline_time[8] }}:00").getTime(); #}
     var countDownDate = new Date("Jan 5, 2030 15:37:25").getTime();
+ //   var countDownDate = new Date("{}").getTime();
 
     // Update the count down every 1 second
     var x = setInterval(function() {
