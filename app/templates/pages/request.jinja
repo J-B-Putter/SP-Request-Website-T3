@@ -100,8 +100,8 @@
 
     <script>
     // Set the date we're counting down to
-    {# var countDownDate = new Date("{{ deadlines[8] }} {{deadlines.deadline_time[8] }}:00").getTime(); #}
-    var countDownDate = new Date("Jan 5, 2030 15:37:25").getTime();
+    var countDownDate = new Date("{{ deadlines[-1].deadline }} {{deadlines[-1].deadline_time }}:00").getTime();
+    {# var countDownDate = new Date("Jan 5, 2030 15:37:25").getTime(); #}
  //   var countDownDate = new Date("{}").getTime();
 
     // Update the count down every 1 second

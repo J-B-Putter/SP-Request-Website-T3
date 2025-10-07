@@ -8,6 +8,8 @@
 
 from flask import Flask, render_template, request, flash, redirect, session
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import date, timedelta
+from datetime import datetime
 import html
 
 from app.helpers.session import init_session
@@ -107,12 +109,23 @@ def show_request_form():
         sql = """
             SELECT deadline, deadline_time
             FROM requests
+            WHERE user_id = ?
         """
-        params=[]
+        params=[user_id]
         result = client.execute(sql, params)
-        deadlines = result.rows
+        due_date_time = result.rows
+       
+        # Adding 10 days to the last request date
+        date_string = due_date_time[-1]['deadline']
+        date_format = "%Y-%m-%d"    
+        dt_object = datetime.strptime(date_string, date_format)
+        timestamp_int = int(dt_object.timestamp())
 
-    return render_template("pages/request.jinja", deadlines = deadlines)
+        initial_date = date(timestamp_int)
+        cooldown_time = timedelta(days=10)
+        due_date_time[-1]['deadline'] = initial_date + cooldown_time
+
+    return render_template("pages/request.jinja", deadlines = due_date_time)
   
 
 #-----------------------------------------------------------
