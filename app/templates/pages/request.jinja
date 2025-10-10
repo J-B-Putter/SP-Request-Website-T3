@@ -22,48 +22,104 @@
             <h2>Place a New Request</h2>
         </header>
 
-        <form action="/place-request" method="POST">
+    {% if cooldown != 0 %}
+        {# Cooldown Timer #}
+        <!DOCTYPE HTML>
+        <html>
+        <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        p {
+        text-align: center;
+        font-size: 60px;
+        margin-top: 0px;
+        }
+        </style>
+        </head>
+        <body>
+        <p id="demo"></p>
 
-            <textarea 
-                name="description" 
-                placeholder="Description" 
-                required
-            ></textarea>             
-            
-            <input
-                type="text"
-                name="build_url"
-                placeholder="Build URL"
-                required
-            >
-            
-            <select name="mods" id="mods">
-                <option value="mod1">Mod 1</option>
-                <option value="mod2">Mod 2</option>
-                <option value="mod3">Mod 3</option>
-                <option value="mod4">Mod 4</option>
-            </select>
+        <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("{{ cooldown }}").getTime();
+        //var countDownDate = new Date("{}").getTime();
 
-            <h5>Deadline</h5>
-            <h6>Date</h6>
-            <input
-                type="date"
-                name="deadline"
-                placeholder="Deadline"
-                required
-            >
-            <h6>Time</h6>
-            <input
-                type="time"
-                name="deadline_time"
-                placeholder="Time"
-                required
-            >
-            <button>Place Request</button>
-            <a href="/" role="button">Cancel</a>
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+        // Get today's date and time
+        var now = new Date().getTime();
             
-        </form>
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
             
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+        // Output the result in an element with id="demo"
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+            
+        // If the count down is over, write some text 
+        if (distance < 0)  {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "EXPIRED";
+            timer_over = true
+        }
+        }, 1000);
+        </script>  
+        </body>
+        </html>
+        
+        {% if timer_over %}
+            <form action="/place-request" method="POST">
+
+                <textarea 
+                    name="description" 
+                    placeholder="Description" 
+                    required
+                ></textarea>             
+                
+                <input
+                    type="text"
+                    name="build_url"
+                    placeholder="Build URL"
+                    required
+                >
+                
+                <select name="mods" id="mods">
+                    <option value="mod1">Mod 1</option>
+                    <option value="mod2">Mod 2</option>
+                    <option value="mod3">Mod 3</option>
+                    <option value="mod4">Mod 4</option>
+                </select>
+
+                <h5>Deadline</h5>
+                <h6>Date</h6>
+                <input
+                    type="date"
+                    name="deadline"
+                    placeholder="Deadline"
+                    required
+                >
+
+                <button>Place Request</button>
+                <a href="/" role="button">Cancel</a>
+                
+            </form>
+        {% else %}
+            <article>
+                <h3>You are still on cooldown...</h3>    
+            </article>
+    {% endif %}    
+    
+    {% else %}
+        <h3>Place your first request...</h3>
+    {% endif %}
+
 
     </article>
 {% else %}
@@ -74,13 +130,6 @@
     </p>
 
 {% endif %}
-    {% for date in deadlines %}
-        <article>
-            {{ date.deadline_time }}  
-        </article>
-    {% else %}
-
-    {% endfor %}
 
     <!DOCTYPE HTML>
     <html>
@@ -100,8 +149,7 @@
 
     <script>
     // Set the date we're counting down to
-    var countDownDate = new Date("{{ deadlines[-1].deadline }} {{deadlines[-1].deadline_time }}:00").getTime();
-    {# var countDownDate = new Date("Jan 5, 2030 15:37:25").getTime(); #}
+    var countDownDate = new Date("{{ cooldown }}").getTime();
  //   var countDownDate = new Date("{}").getTime();
 
     // Update the count down every 1 second

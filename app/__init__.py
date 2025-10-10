@@ -107,25 +107,30 @@ def show_request_form():
     with connect_db() as client:
         # Get all the Completed Projects from the DB
         sql = """
-            SELECT deadline, deadline_time
+            SELECT sub_date
             FROM requests
             WHERE user_id = ?
         """
         params=[user_id]
         result = client.execute(sql, params)
-        due_date_time = result.rows
-       
-        # Adding 10 days to the last request date
-        date_string = due_date_time[-1]['deadline']
-        date_format = "%Y-%m-%d"    
-        dt_object = datetime.strptime(date_string, date_format)
-        timestamp_int = int(dt_object.timestamp())
+        sub_date_time = result.rows
+        # Check if user has a request history
+        if sub_date_time :            
+            # Adding 10 days to the last request date
+            db_date_str = sub_date_time[-1]['sub_date']  # format: YYYY-MM-DD HH:MM:SS
 
-        initial_date = date(timestamp_int)
-        cooldown_time = timedelta(days=10)
-        due_date_time[-1]['deadline'] = initial_date + cooldown_time
+            # Convert to datetime object
+            db_date = datetime.strptime(db_date_str, "%Y-%m-%d %H:%M:%S")
 
-    return render_template("pages/request.jinja", deadlines = due_date_time)
+            # Cooldown duration in days
+            cooldown_days = 10
+
+            cooldown_end = db_date + timedelta(days=cooldown_days)
+        else:
+            cooldown_end = 0
+     
+
+    return render_template("pages/request.jinja", cooldown = cooldown_end)
   
 
 #-----------------------------------------------------------
@@ -349,8 +354,8 @@ def place_a_request():
 
     with connect_db() as client:
         # Add the request to the DB
-        sql = "INSERT INTO requests (user_id, description, build_url, mods, deadline, deadline_time) VALUES (?, ?, ?, ?, ?, ?)"
-        params = [user_id, description, build_url, mods, deadline, deadline_time]
+        sql = "INSERT INTO requests (user_id, description, build_url, mods, deadline) VALUES (?, ?, ?, ?, ?)"
+        params = [user_id, description, build_url, mods, deadline]
         client.execute(sql, params)
         
         # Go back to the home page
