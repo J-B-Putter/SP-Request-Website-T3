@@ -102,6 +102,7 @@ def show_admin_dashboard():
 # Request page route
 #-----------------------------------------------------------
 @app.get("/request/")
+@login_required
 def show_request_form():
     user_id = session.get("user_id")
     with connect_db() as client:
@@ -116,7 +117,7 @@ def show_request_form():
         sub_date_time = result.rows
         # Check if user has a request history
         if sub_date_time :            
-            # Adding 10 days to the last request date
+            # Getting the last submission date in the user's data base
             db_date_str = sub_date_time[-1]['sub_date']  # format: YYYY-MM-DD HH:MM:SS
 
             # Convert to datetime object
@@ -124,13 +125,18 @@ def show_request_form():
 
             # Cooldown duration in days
             cooldown_days = 10
-
+            
+            # Adding cooldown days
             cooldown_end = db_date + timedelta(days=cooldown_days)
+
+            # TODO - you need to either pass in 0 to the template, or in the template check for expired and show the form
         else:
-            cooldown_end = 0
+            cooldown_end = datetime.now()
+            
+            cooldown_days = 0
      
 
-    return render_template("pages/request.jinja", cooldown = cooldown_end)
+    return render_template("pages/request.jinja", cooldown = cooldown_end, cooldown_days = cooldown_days)
   
 
 #-----------------------------------------------------------

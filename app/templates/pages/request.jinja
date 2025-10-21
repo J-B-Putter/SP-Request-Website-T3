@@ -14,44 +14,65 @@
 
 
 {% block content %}
-{% if session.user_id %}
-
     <article>
 
         <header>
             <h2>Place a New Request</h2>
         </header>
 
-    {% if cooldown != 0 %}
-        {% if not timer_over %}
+        {% if cooldown_days > 0 %}
             <!-- Show countdown timer -->
-            <p id="demo"></p>
+
+            <h3>You are still on cooldown...</h3>    
+                
+            <div id="timer"></div>
+
             <script>
-                var countDownDate = new Date("{{ cooldown.isoformat() }}Z").getTime();
+                // Set the date we're counting down to
+                var countDownDate = new Date("{{ cooldown }}");
 
-                var x = setInterval(function () {
-                var now = new Date().getTime();
-                var distance = countDownDate - now;
+                console.log("Last request", countDownDate)
+    
+                // Update the count down every 1 second
+                var x = setInterval(function() {
 
-                if (distance < 0) {
-                    clearInterval(x);
-                    document.getElementById("demo").style.display = "none";
-                    // No need to set timer_over in JS
-                } else {
-                    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                    document.getElementById("demo").innerHTML = days + "d " + hours + "h " +
-                    minutes + "m " + seconds + "s ";
-                }
+                    // Get today's date and time
+                    var now = new Date().getTime();
+
+                    console.log("Now", now) 
+
+                    // Find the distance between now and the count down date
+                    var distance = now - countDownDate;
+
+                    console.log("Dist", distance)
+
+                    // Time calculations for days, hours, minutes and seconds
+                    const msInDay = 1000 * 60 * 60 * 24;
+                    const msInHour = 1000 * 60 * 60;
+                    const msInMinute = 1000 * 60;
+                    const msInSecond = 1000;
+
+                    var days = Math.floor(distance / msInDay);
+                    var hours = Math.floor((distance % msInDay) / msInHour);
+                    var minutes = Math.floor((distance % msInHour) / msInMinute);
+                    var seconds = Math.floor((distance % msInMinute) / msInSecond);
+
+                    console.log(days, hours, minutes, seconds)
+
+                    // Output the result in an element with id="demo"
+                    document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+                    + minutes + "m " + seconds + "s ";
+                        
+                    // If the count down is over, write some text 
+                    if (distance < 0) {
+                        clearInterval(x);
+                        document.getElementById("timer").innerHTML = "EXPIRED";
+                        // Reload the page to now show the form
+                        window.location.href = "/request"
+                    }
                 }, 1000);
             </script>
 
-            <article>
-                <h3>You are still on cooldown...</h3>    
-            </article>
-            
         {% else %}
             <form action="/place-request" method="POST">
 
@@ -88,76 +109,9 @@
                 <a href="/" role="button">Cancel</a>
                 
             </form>
-            {# {% else %}
-                <article>
-                    <h3>You are still on cooldown...</h3>    
-                </article> #}
-        {% endif %}    
-    
-    {% else %}
-        <h3>Place your first request...</h3>
-    {% endif %}
 
+        {% endif %}    
 
     </article>
-{% else %}
-
-    <h1>Oops!</h1>
-    <p>
-        <a href="/login">Login</a> to access these functions...
-    </p>
-
-{% endif %}
-
-    <!DOCTYPE HTML>
-    <html>
-    <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-    p {
-    text-align: center;
-    font-size: 60px;
-    margin-top: 0px;
-    }
-    </style>
-    </head>
-    <body>
-
-    <p id="demo"></p>
-
-    <script>
-    // Set the date we're counting down to
-    var countDownDate = new Date("{{ cooldown }}").getTime();
- //   var countDownDate = new Date("{}").getTime();
-
-    // Update the count down every 1 second
-    var x = setInterval(function() {
-
-    // Get today's date and time
-    var now = new Date().getTime();
-        
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now;
-        
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-    // Output the result in an element with id="demo"
-    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-    + minutes + "m " + seconds + "s ";
-        
-    // If the count down is over, write some text 
-    if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
-    }
-    }, 1000);
-    </script>
-
-    </body>
-    </html>
 
 {% endblock %}
