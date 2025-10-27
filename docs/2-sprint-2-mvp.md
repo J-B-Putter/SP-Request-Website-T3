@@ -10,9 +10,9 @@ Develop a bare-bones, working web application that provides the key functionalit
 
 ## Implemented Database Schema
 
-Replace this text with notes regarding the DB schema.
+A few extra fields were needed which the original schema lacked to allow the programme to function properly. 
 
-![SCREENSHOT OF DB SCHEMA](screenshots/example.png)
+![Alt text](<Screenshot 2025-10-28 092632-1.png>)
 
 
 ---

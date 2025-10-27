@@ -128,12 +128,14 @@ def show_request_form():
             
             # Adding cooldown days
             cooldown_end = db_date + timedelta(days=cooldown_days)
+            print(cooldown_end)
+            print(cooldown_days)
 
-            # TODO - you need to either pass in 0 to the template, or in the template check for expired and show the form
         else:
             cooldown_end = datetime.now()
             
             cooldown_days = 0
+
      
 
     return render_template("pages/request.jinja", cooldown = cooldown_end, cooldown_days = cooldown_days)
