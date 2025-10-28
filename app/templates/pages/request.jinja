@@ -29,7 +29,7 @@
 
             <script>
                 // Set the date we're counting down to
-                var countDownDate = new Date("{{ cooldown }}");
+                var countDownDate = new Date("{{ cooldown_end }}");
 
 
                 console.log("Last request", countDownDate)
@@ -43,7 +43,7 @@
                     console.log("Now", now) 
 
                     // Find the distance between now and the count down date
-                    var distance = now - countDownDate;
+                    var distance = countDownDate - now;
 
                     console.log("Dist", distance)
 

@@ -128,8 +128,6 @@ def show_request_form():
             
             # Adding cooldown days
             cooldown_end = db_date + timedelta(days=cooldown_days)
-            print(cooldown_end)
-            print(cooldown_days)
 
         else:
             cooldown_end = datetime.now()
@@ -138,11 +136,11 @@ def show_request_form():
 
      
 
-    return render_template("pages/request.jinja", cooldown = cooldown_end, cooldown_days = cooldown_days)
+    return render_template("pages/request.jinja", cooldown_end = cooldown_end, cooldown_days = cooldown_days)
   
 
 #-----------------------------------------------------------
-# About page route
+# User page route
 #-----------------------------------------------------------
 @app.get("/user/")
 def user():
@@ -534,4 +532,12 @@ def delete_my_account(id):
         # Go back to the home page
         flash("Account deleted", "success")
         return redirect("/welcome")
+
+
+#-----------------------------------------------------------
+# Terms of Service page route
+#-----------------------------------------------------------
+@app.get("/ToS/")
+def terms_of_service():
+    return render_template("pages/ToS.jinja")
 
