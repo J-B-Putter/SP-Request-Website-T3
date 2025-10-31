@@ -1,6 +1,8 @@
 {#=====================================================
-  Response page
-  - 
+  Previous Projects Page
+  - Shows all requests with a resonse
+  - Accessable by all user as well as users without an account
+  - Helps new users understand what the website is about
 =====================================================#}
 
 {% extends 'pages/base.jinja' %}
@@ -8,20 +10,20 @@
 
 {% block title %}
 
-        Responses
+    Previous Responses
         
 {% endblock %}
 
 
 {% block content %}
 
-    <h1>Responses</h1>
+    <h1>Gallery</h1>
 
     {% for project in previous_projects %}
       <article>
         <h3><a href="{{ project.build_url }}">Build</a></h3>   
         <img src="{{ project.preview_img }}">  
-        <p><a href="{{ project.response_url }}">Images</a></p>
+        <p><a href="{{ project.response_url }}">Full Gallery</a></p>
       </article>
 
     {% else %}

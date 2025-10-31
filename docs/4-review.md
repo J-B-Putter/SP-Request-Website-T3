@@ -4,26 +4,26 @@
 
 ### FUNCTIONALITY
 
-I tried to fix all the bugs and mistakes I made to ensure that the webb app fulfils the needs of the end user, preventing anything from feeling incomplete and faulty. 
+The basic functionality is complete and works like intended without any known bugs and/or glitches. The users' needs should be fulfiled and nothing feels incomplete. 
 
 ### USABILITY
 
-I tried to design the webb app to be logical and easy to use. I made the basic and most important functions clearly visible to avoid confusion. 
+The wab app is designed to be as logical as possible with every important funtion easily findable and clearly visible. The users should not be confused when using the basic functions.
 
 
 ### AESTHETICS
 
-In all honesty, I did not get time to work on aesthetics of any kind. The webb app still looks the same as when I started. 
+I did not get time to work on aesthetics of any kind. The web app still looks the same as when I started. 
 
 
 ### ACCESSIBILITY
 
-My webb app is only tested on desktops. I do not know if it will work on any other device. 
+My web app is only tested on desktops. I do not know if it will work on any other device. 
 
 
 ### PRIVACY
 
-The end user does have basic privacy. No user can access the account of another without knowing their password and username which is protected by encryption before stored in the data base. 
+The end user does have basic privacy. No user can access the account of another without knowing their password and username which is protected by encryption before stored in the data base. The wab app also doesn't require any sensitive personal data from the users.  
 
 
 ---
@@ -32,11 +32,11 @@ The end user does have basic privacy. No user can access the account of another 
 
 Replace these words with a brief review of how the project went in terms of:
 - What went well?
-    I did get most of the basic functionality done. 
+    I did get the basic functionality done and everything works as intended most of the time. 
 - What didn't go so well?
     I did not get time to work on aesthetics and some basic functions are still faulty and incomplete. 
 - How did the testing/trialling impact the final system?
-    I did not do any specific testing since the basic functionalities are still incomplete. 
+    I did not do any specific testing due to a lack of time. 
 - What would you do differently if you could?
     If I had the ability to work on my project after school hours, I would have used it to crate a better product. 
 

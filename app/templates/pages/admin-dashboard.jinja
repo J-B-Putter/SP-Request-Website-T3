@@ -1,6 +1,7 @@
 {#=====================================================
-  User Registration page
-  - Form for adding a new user
+  Functions exclusive to Admin User(s)
+  - Shows all requests form other users that isn't replied to yet
+  - Allows the Admin(s) to access the requests and respond to them
 =====================================================#}
 
 {% extends 'pages/base.jinja' %}
@@ -24,9 +25,6 @@
             <p>
                 {{ request.description }}
             </p>
-            {# <p>
-                {{ request.mods }}
-            </p> #}
             <p>
                 <strong>{{ request.deadline }}</strong>
             </p>
@@ -41,7 +39,7 @@
 
     <h1>Oops!</h1>
     <p>
-        <a href="/login">Login</a> to access these functions...
+        <a href="/login">Login as <strong>Admin</strong></a> to access these functions...
     </p>
 
 {% endif %}

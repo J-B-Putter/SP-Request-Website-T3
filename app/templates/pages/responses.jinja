@@ -1,6 +1,6 @@
 {#=====================================================
-  Response page
-  - 
+  Responses page
+  - Allows users to see and access their requests with responses
 =====================================================#}
 
 {% extends 'pages/base.jinja' %}
@@ -8,7 +8,7 @@
 
 {% block title %}
 
-        Responses
+  Responses
         
 {% endblock %}
 
@@ -23,6 +23,7 @@
       <article>
         <h3>{{ response.description }}</h3>     
         {% if response.response_url %} 
+          <img src="{{ response.preview_img }}">  
           <p><a href="{{ response.response_url }}">Click here to view</a></p>
           <p>{{ response.notes }}</p>
         {% else %}

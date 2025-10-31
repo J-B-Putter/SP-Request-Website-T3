@@ -98,5 +98,6 @@ Replace this text with notes any improvements you made as a result of the testin
 
 ## Sprint Review
 
-Replace this text with a statement about how the sprint has moved the project forward - key success point, any things that didn't go so well, etc.
+This sprint helped start the project by focusing on basic ideas first without going too far into the refining and visual appearance of the web app. It made progress by laying the foundation from which the rest of the project can be built. 
+The most helpful part was visualising the project with Figma to get a clear understanding of what the project will look like without needing to spend time and effort on creating functions that won't contribute to the final product. 
 

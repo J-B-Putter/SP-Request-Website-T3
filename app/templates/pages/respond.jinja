@@ -1,7 +1,6 @@
 {#=====================================================
-  Thing page
-  - Shows details of a single thing
-  - Has a delete link to remove it
+  Respond Page
+  - Admin page to respond to a single request
 =====================================================#}
 
 {% extends 'pages/base.jinja' %}
@@ -9,7 +8,7 @@
 
 {% block title %}
 
-    Flask Demo - Respond
+    Respond
 
 {% endblock %}
 
@@ -22,7 +21,7 @@
             <h2>Respond to {{ request.builder }}</h2>
         </header>
 
-        <form action="/submit-response/{{ request.id }}" method="POST">
+        <form action="/submit-response/{{ request.req_id }}" method="POST">
 
             <textarea 
                 name="notes" 

@@ -21,7 +21,50 @@ A few extra fields were needed which the original schema lacked to allow the pro
 
 The key functionality of the web app was implemented:
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE SYSTEM HERE**
+### Welcome Page
+
+![Alt text](<Screenshot 2025-10-31 133354.png>)
+
+### Login And Register Pages
+
+![Alt text](<Screenshot 2025-10-31 133632.png>)
+![Alt text](<Screenshot 2025-10-31 133642.png>)
+
+### Home Page 
+
+![Alt text](<Screenshot 2025-10-31 133420.png>)
+
+### Request Pages
+
+![Alt text](<Screenshot 2025-10-31 134251.png>)
+^Without Cooldown^
+
+![Alt text](<Screenshot 2025-10-31 133438.png>)
+^With Cooldown^
+
+### Response Page
+
+![Alt text](<Screenshot 2025-10-31 133718.png>)
+
+### Previous Projects Page
+
+![Alt text](<Screenshot 2025-10-31 133818.png>)
+
+### User Account Controls
+
+![Alt text](<Screenshot 2025-10-31 133501.png>)
+
+### Terms of Service Page
+
+![Alt text](<Screenshot 2025-10-31 133531.png>)
+
+### Admin Pages
+
+![Alt text](<Screenshot 2025-10-31 134957.png>)
+^Admin Dashboard^
+
+![Alt text](<Screenshot 2025-10-31 135035.png>)
+^Admin Response Form^
 
 
 ---

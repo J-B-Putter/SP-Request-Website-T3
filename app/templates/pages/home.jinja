@@ -1,8 +1,8 @@
 {#=====================================================
   Home page
-  - Hero style greeting banner
-  - List of things passed in as 'things' array
-  - Form for adding a new thing
+  - Shows all the basic functions accessable by standard users
+  - Shows a list of the logged in user's previous requests (most recent ==> least recent)
+
 =====================================================#}
 
 {% extends 'pages/base.jinja' %}
@@ -10,7 +10,7 @@
 
 {% block title %}
 
-        Main Control Panel
+    Main Control Panel
         
 {% endblock %}
 
@@ -22,7 +22,6 @@
     <article>
       <a href="/request" role="button">Place a Request</a>
       <a href="/responses" role="button">Responses</a>
-      <a href="/mods" role="button">Compatible Mods</a>
     </article>
 
     <h1>Recent Requests</h1>

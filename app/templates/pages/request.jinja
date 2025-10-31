@@ -1,6 +1,9 @@
 {#=====================================================
-  User Registration page
-  - Form for adding a new user
+  New Request Page
+  - Used by logged in users to submit a screenshot request
+  - Incudes a request form 
+  - Shows a cooldown timer for users who have submitted a request within the last 10 days
+  - Hides request form from users on cooldown
 =====================================================#}
 
 {% extends 'pages/base.jinja' %}
@@ -8,7 +11,7 @@
 
 {% block title %}
 
-    Flask Demo - New Request
+    New Request
 
 {% endblock %}
 
@@ -91,10 +94,10 @@
                 >
                 
                 <select name="mods" id="mods">
-                    <option value="mod1">Mod 1</option>
-                    <option value="mod2">Mod 2</option>
-                    <option value="mod3">Mod 3</option>
-                    <option value="mod4">Mod 4</option>
+                    <option value="mod1">Ocean Mod</option>
+                    <option value="mod2">Weather Mod</option>
+                    <option value="mod3">Custom Map 1</option>
+                    <option value="mod4">Custom Map 2</option>
                 </select>
 
                 <h5>Deadline</h5>
