@@ -58,16 +58,16 @@ The project demonstrates a number of **complex database techniques**:
 - Dynamically linking data between the database and a front-end display
 - Applying data access permissions as appropriate to the outcome
 
-The project demonstrates a number of **complex digital media (web) techniques**:
+<!-- The project demonstrates a number of **complex digital media (web) techniques**:
 - Using non-core functionality
 - Using sophisticated digital effects
 - Applying industry standards or guidelines
 - Using responsive design for use on multiple devices
 - The integration of original media assets
 - Using dynamic data handling and interactivity
-- Automation through scripts
+- Automation through scripts -->
 
-** EDIT THESE LISTS ABOVE TO MATCH YOUR PROJECT**
+
 
 
 
